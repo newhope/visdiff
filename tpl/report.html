@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>VisDiff v<%= app.version %> - Diff report</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js"></script>
+  <style>
+    td > a.screenshot {
+      display: block;
+      width: 250px;
+      max-width: 40vw;
+      height: auto;
+      box-shadow: 4px 4px 4px rgba(0,0,0, .3);
+    }
+    td > a.screenshot > img {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<div class="container container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Diff between <strong class="badge badge-pill badge-info"><%- name1 %></strong> and <strong class="badge badge-pill badge-info"><%- name2 %></strong></h2>
+      <p>Total <%- diff.length %> differences</p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>URL</th>
+            <th>Viewport</th>
+            <th>Snapshot <span class="badge badge-pill badge-info"><%- name1 %></span>
+            </th>
+            <th>Snapshot <span class="badge badge-pill badge-info"><%- name2 %></span>
+            </th>
+            <th>Diff</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% _.forEach(diff, function(row) { %>
+          <tr>
+            <td>
+              <div class="sticky-parent"><%- row.id %></div>
+            </td>
+            <td>
+              <div class="sticky-parent"><a href="<%= row.url %>"><%- row.url %></a></div>
+            </td>
+            <td>
+              <div class="sticky-parent"><%- row.view_port %></div></td>
+            <td>
+              <a target="_blank" class="screenshot" href="<%= row.img_from %>">
+                <img src="<%= row.img_from %>"></a>
+            </td>
+            <td>
+              <a target="_blank" class="screenshot" href="<%= row.img_to %>">
+                <img src="<%= row.img_to %>"></a>
+            </td>
+            <td class="text-center">
+              <a target="_blank" class="screenshot" href="<%= row.img_diff %>">
+                <img src="<%= row.img_diff %>"></a><br>
+              <%- row.nbr_pixel %> bytes diff
+            </td>
+          </tr>
+        <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<script>
+  $(function(){
+    $('.sticky-parent').stick_in_parent();
+  });
+</script>
+</body>
+</html>

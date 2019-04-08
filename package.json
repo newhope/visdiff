@@ -1,0 +1,22 @@
+{
+  "name": "VisDiff",
+  "version": "1.0.0",
+  "description": "Snapshot a set of URL and compare to previous snapshot",
+  "license": "MIT",
+  "repository": "newhope/visdiff",
+  "author": {
+    "name": "Minh Dang",
+    "email": "qminh86it@gmail.com"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "jpeg-js": "^0.3.4",
+    "lodash": "^4.17.11",
+    "minimist": "^1.2.0",
+    "pixelmatch": "^4.0.2",
+    "puppeteer": "^1.14.0"
+  },
+  "bin": {
+    "visdiff": "./index.js"
+  }
+}
