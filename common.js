@@ -36,9 +36,24 @@ function die() {
   process.exit(999);
 }
 
+function ask(query) {
+  const readline = require('readline');
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  return new Promise(resolve => rl.question(query, ans => {
+    rl.close();
+    resolve(ans);
+  }))
+}
+
 module.exports = {
   rmdir_recursive: rmdir_recursive,
   format_name: format_name,
   debug_log: debug_log,
   die: die,
+  ask: ask,
 };

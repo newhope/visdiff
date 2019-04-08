@@ -63,5 +63,14 @@ Compare 2 snapshots
 - capture-name-2 (string) - *Compulsory* - Name of the second capture to compare.
 
 #### Samples:
-> `visdiff compare the-first the-last` 
+> `visdiff compare the-first the-last`
+
+
+### delete-all/clear-all
+Clear all snapshots &amp; reports from the project.
+
+Will
+
+#### Samples
+> `visdiff clear-all` 
  
